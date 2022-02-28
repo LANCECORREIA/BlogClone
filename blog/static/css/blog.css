@@ -12,3 +12,18 @@
     filter: hue-rotate(360deg);
   }
 }
+
+.techfont {
+  font-family: "Russo One", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.centerstage {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.postdate {
+  text-align: center;
+}
