@@ -17,6 +17,7 @@ from django.urls.conf import include
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views
+from . import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -32,4 +33,5 @@ urlpatterns = [
         name="logout",
         kwargs={"next_page": "/"},
     ),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]

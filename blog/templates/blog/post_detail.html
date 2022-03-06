@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %} {% block body %}
 
-<h1 class="posttile">{{post.title}}</h1>
+<h1 class="posttitle">{{post.title}}</h1>
 
 <p class="postcontent">{{post.text|safe|linebreaksbr}}</p>
 
@@ -27,17 +27,18 @@
 >
 
 <div class="container">
-  {% for comment in post.comment.all %} {% if user.isauthenticated
-  orcomment.approved_comment %} {{comment.created_date}} {% if not
-  comment.approved_comment %}
-  <a class="btn btn-primary" href="{% url 'comment_remove' pk=comment.pk %}">
+  {% for comment in post.comments.all %} <br />
+  {% if user.is_authenticated or comment.approved_comment %}
+  {{comment.created_date}} {% if not comment.approved_comment %}
+  <a class="btn btn-danger" href="{% url 'comment_remove' pk=comment.pk %}">
     <span class="fa fa-remove"></span>
   </a>
-  <a href="{% url 'comment_approve' pk=post.pk %}">
-    <span class="fa fa-ok"></span>
+  <a class="btn btn-success" href="{% url 'comment_approve' pk=comment.pk %}">
+    <span class="fa fa-check"></span>
   </a>
+  {% endif %}
   <p>{{comment.text|safe|linebreaks}}</p>
-  <p>Posted By: {{comment.author}}</p>
-  {% endfor %}
+  <p>Posted By: <strong>{{comment.author}}</strong></p>
+  {% endif %} {% endfor %}
 </div>
 {% endblock %}

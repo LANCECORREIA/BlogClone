@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog</title>
+    <meta http-equiv="Content-Type" content="text/html" />
     <link
       rel="stylesheet"
       href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
@@ -39,7 +40,12 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark techfont">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'post_list' %}">Navbar</a>
+        <a
+          class="nav-item nav-link"
+          href="{% url 'post_list' %}"
+          style="color: white"
+          >BLOGIFY</a
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -62,6 +68,25 @@
                 >Home</a
               >
             </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item active">
+              {% url 'post_new' as url %}
+              <a
+                class="nav-link {% if request.path == url %} current {% endif %}"
+                href="{{url}}"
+                >New Post</a
+              >
+            </li>
+            <li class="nav-item active">
+              {% url 'post_draft_list' as url %}
+              <a
+                class="nav-link {% if request.path == url %} current {% endif %}"
+                href="{{url}}"
+                >Drafts</a
+              >
+            </li>
+
+            {% endif %}
             <li class="nav-item active">
               {% url 'about' as url %}
               <a
@@ -82,35 +107,24 @@
                 >LinkedIn</a
               >
             </li>
-          </ul>
-          <ul class="nav navbar-nav ms-auto">
             {% if user.is_authenticated %}
-            <li class="nav-item active">
-              {% url 'post_new' as url %}
-              <a
-                class="nav-link {% if request.path == url %} current {% endif %}"
-                href="{{url}}"
-                >New Post</a
-              >
-            </li>
-            <li class="nav-item active">
-              {% url 'post_draft_list' as url %}
-              <a
-                class="nav-link {% if request.path == url %} current {% endif %}"
-                href="{{url}}"
-                >Drafts</a
-              >
-            </li>
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
             </li>
+            {% endif %}
+          </ul>
+          <ul class="nav navbar-nav ms-auto">
+            {% if user.is_authenticated %}
             <li class="nav-item active">
               <a class="nav-link" href="/admin">Welcome: {{user.username}}</a>
             </li>
             {% else %}
             <li>
-              <a class="nav navbar-right" href="{% url 'login' %}"
-                ><i class="fa fa-user" style="color: white"></i
+              <a
+                class="nav navbar-right nav-link"
+                href="{% url 'login' %}"
+                style="color: white"
+                >Login<i class="fa fa-user" style="padding-left: 5px"></i
               ></a>
             </li>
             {% endif %}
