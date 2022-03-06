@@ -34,7 +34,7 @@ class Comment(models.Model):
     )
     author = models.CharField(max_length=200)
     text = models.TextField()
-    create_date = models.DateTimeField(default=timezone.now())
+    create_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
 
     def approve(self):
@@ -45,4 +45,4 @@ class Comment(models.Model):
         return reverse("post_list")
 
     def __str__(self):
-        return self.approve
+        return self.text

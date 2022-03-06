@@ -15,8 +15,23 @@
 
 .techfont {
   font-family: "Russo One", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   margin-bottom: 10px;
+}
+
+.postdate {
+  text-align: left;
+}
+
+.posttitle {
+  font-family: "Russo One", sans-serif;
+  font-size: 3em;
+  text-align: center;
+}
+
+.postcontent {
+  font-family: "Montserrat";
+  font-size: 1.5em;
 }
 
 .centerstage {
@@ -24,6 +39,20 @@
   margin-right: auto;
 }
 
-.postdate {
-  text-align: center;
+.btn-comment {
+  position: absolute;
+  right: 10px;
+  color: white !important;
+}
+
+.bigbrand {
+  font-size: 1.5em;
+}
+
+.nav-link:hover {
+  color: white !important;
+}
+
+.current {
+  color: white !important;
 }

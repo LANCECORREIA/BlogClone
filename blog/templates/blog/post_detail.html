@@ -1,24 +1,27 @@
-{% extends 'blog/base.html' %} {% block 'body' %}
+{% extends 'blog/base.html' %} {% block body %}
 
-<h1 class="posttile loader">{{post.title}}</h1>
+<h1 class="posttile">{{post.title}}</h1>
 
-{% if post.published_date %}
+<p class="postcontent">{{post.text|safe|linebreaksbr}}</p>
+
+{% if user.is_authenticated %} {% if post.published_date %}
 <div class="date postdate">{{post.published_date}}</div>
 {% else %}
-<a href="{% url 'post_publish' pk=post.pk %}" class="btn">Publish</a>
+<a href="{% url 'post_publish' pk=post.pk %}" class="btn btn-success"
+  >Publish</a
+>
 {% endif %}
-
-<p class="postcontent">{{post.title|safe|linebreaksbr}}</p>
-
-{% if user.is_authenticated %}
-<a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-primary">
+<a class="btn btn-dark" href="{% url 'post_edit' pk=post.pk %}"
+  ><span class="fa fa-pencil"></span
+></a>
+<a href="{% url 'post_remove' pk=post.pk %}" class="btn btn-danger">
   <span class="fa fa-remove"></span>
 </a>
 {% endif %}
 
 <hr />
 <a
-  class="btn btn-primary btn-comment"
+  class="btn btn-info btn-comment"
   href="{% url 'add_comment_to_post' pk=post.pk%}"
   >Add Comment</a
 >
