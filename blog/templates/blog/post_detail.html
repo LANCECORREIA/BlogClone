@@ -3,8 +3,20 @@
 <h1 class="posttitle">{{post.title}}</h1>
 
 <p class="postcontent">{{post.text|safe|linebreaksbr}}</p>
-
-{% if user.is_authenticated %} {% if post.published_date %}
+<form action="{% url 'like_post' pk=post.pk %}" method="POST">
+  {% csrf_token %}
+  <h6>{{post.total_likes.count}}</h6>
+  <button type="submit">
+    {% if liked %}
+    <i class="fa fa-heart red-heart"></i>
+    {% else %}
+    <i class="fa fa-heart"></i>
+    {% endif %}
+  </button>
+</form>
+{% if user.is_authenticated and user.pk == post.author_id %}
+<!--protects-->
+{% if post.published_date %}
 <div class="date postdate">{{post.published_date}}</div>
 {% else %}
 <a href="{% url 'post_publish' pk=post.pk %}" class="btn btn-success"

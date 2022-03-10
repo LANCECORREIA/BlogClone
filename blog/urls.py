@@ -26,4 +26,5 @@ urlpatterns = [
         r"^comment/(?P<pk>\d+)/remove", views.comment_remove, name="comment_remove"
     ),
     re_path(r"^post/(?P<pk>\d+)/publish$", views.post_publish, name="post_publish"),
+    re_path(r"^like/(?P<pk>\d+)",views.like_post,name='like_post')
 ]

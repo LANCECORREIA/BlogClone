@@ -3,6 +3,7 @@ from tkinter import CASCADE
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -13,6 +14,8 @@ class Post(models.Model):
     text = models.TextField()
     create_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    likes = models.ManyToManyField(User, related_name="blog_post")
+    views = models.BigIntegerField(default=0)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -23,6 +26,9 @@ class Post(models.Model):
 
     def approve_comments(self):
         return self.comments.filter(approved_comment=True)
+
+    def total_likes(self):
+        return self.likes
 
     def __str__(self):
         return self.title

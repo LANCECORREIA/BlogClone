@@ -29,10 +29,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# if DEBUG:
-#     import mimetypes
+if DEBUG:
+    import mimetypes
 
-#     mimetypes.add_type("application/javascript", ".js", True)
+    mimetypes.add_type("application/javascript", ".js", True)
 
 # Application definition
 
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "debug_toolbar",
+    "debug_toolbar",
     "blog",
 ]
 
@@ -55,7 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "BlogClone.urls"
