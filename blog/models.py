@@ -4,6 +4,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -11,7 +12,8 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     author = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    text = models.TextField()
+    # text = models.TextField()
+    text = RichTextField(blank=True,null=True)
     create_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     likes = models.ManyToManyField(User, related_name="blog_post")
