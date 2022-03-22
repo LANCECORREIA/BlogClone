@@ -36,7 +36,7 @@
       href="/static/assets/favicon.ico"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="../static/css/blog.css">
+    <link rel="stylesheet" href="../static/css/blog.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light login-navbar">
@@ -90,7 +90,7 @@
       </div>
     </nav>
 
-    <div class="container container-fluid header" style="max-width: 300px;">
+    <div class="container container-fluid header" style="max-width: 300px">
       <div class="row">
         <div class="blog_posts">
           <div class="jumbotron">
@@ -99,7 +99,7 @@
 
             <form action="/accounts/login" method="POST" class="input-grp">
               <input
-              class="input-field"
+                class="input-field"
                 type="hidden"
                 name="csrfmiddlewaretoken"
                 value="7RaFeIPI7JXLTuvDVWnSvF3mGAKaaQlF6S4h20SRa5LdZmVeYFyB5Zd0Uf3LDCYQ"
@@ -107,8 +107,8 @@
               <p>
                 <!-- <label for="id_username">Username</label> -->
                 <input
-                placeholder="Enter Username"
-                class="input-field"
+                  placeholder="Enter Username"
+                  class="input-field"
                   type="text"
                   name="username"
                   autofocus
@@ -123,8 +123,8 @@
               <p>
                 <!-- <label for="id_password">Password</label> -->
                 <input
-                placeholder="Enter Password"
-                class="input-field"
+                  placeholder="Enter Password"
+                  class="input-field"
                   type="password"
                   name="password"
                   autocomplete="current-password"
@@ -132,7 +132,11 @@
                   id="id_password"
                 />
               </p>
-              <input type="submit" class="btn btn-login btn-primary" value="Login" />
+              <input
+                type="submit"
+                class="btn btn-login btn-primary"
+                value="Login"
+              />
               <input type="hidden" name="next" value="" />
             </form>
           </div>

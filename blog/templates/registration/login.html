@@ -1,15 +1,105 @@
-{% extends 'blog/base.html' %} {% block body%}
+{% extends 'blog/base.html' %} {% block body%} {% comment %}
 <div class="jumbotron">
-  <h2>Login:</h2>
-  <p>(Must be SuperUser, please check with the site admin)</p>
-
+  <h1>Login</h1>
   {% if form.errors %}
   <p>Your username and password didn't match! Please try again.</p>
   {% endif %}
-  <form action="{% url 'login' %}" method="POST">
-    {% csrf_token %} {{ form.as_p }}
-    <input type="submit" class="btn btn-primary" value="Login" />
+  <form action="{% url 'login' %}" method="POST" class="input-grp">
+    {% csrf_token %}
+    <!--{{ form.as_p }}-->
+    {% for field in form %}
+    <p>
+      <input
+        class="input-field"
+        placeholder="Enter {{field.html_name.capitalize}}"
+        id="{{ field.id_for_label }}"
+        name="{{ field.html_name }}"
+        type="text"
+        autofocus
+        autocapitalize="none"
+      />
+      {{ field.errors }} {% endfor %}
+    </p>
+    <input type="submit" class="btn btn-login btn-primary" value="Login" />
     <input type="hidden" name="next" value="{{next}}" />
   </form>
 </div>
+{% endcomment %}
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid"
+          alt="Phone image"
+        />
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form action="{% url 'login' %}" method="POST">
+          {% csrf_token %} {% for field in form %}
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="{{ field.id_for_label }}"
+              class="form-control form-control-lg"
+              name="{{ field.html_name }}"
+            />
+            <label class="form-label" for="form1Example13"
+              >{{field.html_name.capitalize}}</label
+            >
+          </div>
+          {{ field.errors }} {% endfor %}
+          <div class="d-flex justify-content-around align-items-center mb-4">
+            <!-- Checkbox -->
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="form1Example3"
+                checked
+              />
+              <label class="form-check-label" for="form1Example3">
+                Remember me
+              </label>
+            </div>
+            <a href="#!">Forgot password?</a>
+          </div>
+
+          <!-- Submit button -->
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg btn-block"
+            value="Login"
+          >
+            Sign in
+          </button>
+          <input type="hidden" name="next" value="{{next}}" />
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+          </div>
+
+          <a
+            class="btn btn-primary btn-lg btn-block"
+            style="background-color: #3b5998"
+            href="#!"
+            role="button"
+          >
+            <i class="fa fa-facebook-f me-2"></i>Continue with Facebook
+          </a>
+          <a
+            class="btn btn-primary btn-lg btn-block"
+            style="background-color: #55acee"
+            href="#!"
+            role="button"
+          >
+            <i class="fa fa-twitter me-2"></i>Continue with Twitter</a
+          >
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

@@ -1,20 +1,6 @@
-{% extends 'blog/base.html' %} {% block body%}
+{% extends 'blog/base.html' %} {% block body%} {% comment %}
 <div class="centerstage">
-  {% for post in post_list %} {% comment %}
-  <div class="post">
-    <h1><a href="{% url 'post_detail' pk=post.pk %}"> {{post.title}} </a></h1>
-    <div class="date">
-      <p>
-        Author: {{post.username}}
-        <!--protect-->
-        Published on: {{post.published_date|date:"D M Y"}}
-        <a href="{% url 'post_detail' pk=post.pk %}"
-          >Comments: {{post.approve_comments.count}}</a
-        >
-      </p>
-    </div>
-  </div>
-  {% endcomment %}
+  {% for post in post_list %}
   <div class="card" style="width: 18rem">
     <div class="card-body">
       <h5 class="card-title">{{post.title}}</h5>
@@ -30,14 +16,34 @@
         Likes: {{post.total_likes.count}}
       </h6>
       <a href="{% url 'post_detail' pk=post.pk %}" class="stretched-link"></a>
-      {% comment %}
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
-      {% endcomment %}
     </div>
   </div>
   {% endfor %}
 </div>
-{% endblock %}
+{% endcomment %}
+<div class="container mt-2">
+  <div class="row">
+    {% for post in post_list %}
+    <div class="col-md-3 col-sm-6 item">
+      <div class="card item-card card-block">
+        <img src="https://picsum.photos/300/150" />
+        <h5 class="item-card-title mt-3 mb-3">{{post.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Author: {{post.username}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          Published on: {{post.published_date|date:"D M Y"}}
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          Comments: {{post.approve_comments.count}}
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">Views: {{post.views}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          Likes: {{post.total_likes.count}}
+        </h6>
+        <a href="{% url 'post_detail' pk=post.pk %}" class="stretched-link"></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% include "pagination.html" %} {% endblock %}
+</div>

@@ -1,78 +1,72 @@
-.loader {
-  filter: hue-rotate(0deg);
-  background-color: linear-gradient(45deg, #0f8, #08f);
-  animation: hue 10000ms infinite linear;
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
 }
 
-@keyframes hue {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-  }
+.form-outline .form-control.form-control-lg {
+  border: 2px solid grey;
 }
 
-.techfont {
-  font-family: "Russo One", sans-serif;
-  font-size: 1.5em;
-  margin-bottom: 10px;
+img {
+  height: 150px;
+  width: 100%;
 }
 
-.jumbotron {
-  text-align: center;
-  margin-top: 5em;
+.item {
+  padding: 12px;
+}
+.item-card {
+  transition: 0.5s;
+  cursor: pointer;
+}
+.item-card-title {
+  font-size: 15px;
+  transition: 1s;
+  cursor: pointer;
+}
+.item-card-title i {
+  font-size: 15px;
+  transition: 1s;
+  cursor: pointer;
+  color: #ffa710;
+}
+.card-title i:hover {
+  transform: scale(1.25) rotate(100deg);
+  color: #18d4ca;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+.card-text {
+  height: 80px;
 }
 
-.postdate {
-  text-align: left;
-}
-
-.posttitle {
-  font-family: "Russo One", sans-serif;
-  font-size: 3em;
-  text-align: center;
-}
-
-.postcontent {
-  font-family: "Montserrat";
-  font-size: 1.5em;
-}
-
-.centerstage {
-  text-align: center;
-  height: 100%;
-  color: black;
-}
-
-.centerstage a {
-  color: black;
-  text-decoration: none;
-}
-
-.btn-comment {
+.card::before,
+.card::after {
   position: absolute;
-  right: 10px;
-  color: white !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scale3d(0, 0, 1);
+  transition: transform 0.3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: "";
+  pointer-events: none;
 }
-
-.bigbrand {
-  font-size: 1.5em;
+.card::before {
+  transform-origin: left top;
 }
-
-.nav-link:hover {
-  color: white !important;
+.card::after {
+  transform-origin: right bottom;
 }
-
-.current {
-  color: white !important;
-}
-
-body {
-  /* background-image: url("../assets/img.jpg"); */
-  background-size: cover;
-}
-
-.red-heart {
-  color: red;
+.card:hover::before,
+.card:hover::after,
+.card:focus::before,
+.card:focus::after {
+  transform: scale3d(1, 1, 1);
 }

@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import ModelFormMixin
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -28,6 +29,7 @@ class AboutView(TemplateView):
 # region Post
 class PostListView(ListView):
     model = Post
+    paginate_by = 8
 
     def get_queryset(self):
         return Post.objects.raw(
