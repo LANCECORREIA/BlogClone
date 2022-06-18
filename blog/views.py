@@ -89,7 +89,7 @@ class DraftListView(LoginRequiredMixin, ListView):
     context_object_name = "posts"
 
     def get_queryset(self):
-        return Post.objects.filter(published_date__isnull=True).order_by("create_date")
+        return Post.objects.filter(author_id=self.request.user.pk,published_date__isnull=True).order_by("create_date")
 
 
 @login_required

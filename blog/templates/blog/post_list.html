@@ -26,7 +26,7 @@
     {% for post in post_list %}
     <div class="col-md-3 col-sm-6 item">
       <div class="card item-card card-block">
-        <img src="https://picsum.photos/300/150" />
+        <img src="https://picsum.photos/id/{{post.id}}/300/150" />
         <h5 class="item-card-title mt-3 mb-3">{{post.title}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Author: {{post.username}}</h6>
         <h6 class="card-subtitle mb-2 text-muted">
